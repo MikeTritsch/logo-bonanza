@@ -1,4 +1,6 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generateSvg = require('./lib/shapes');
 
 
 const questions = [
@@ -24,3 +26,16 @@ const questions = [
         choices: ['circle', 'triangle', 'square'],
     },
 ]
+
+function writeToFile(fileName, data) {
+    
+}
+
+function init() {
+    inquirer.prompt(questions)
+    .them((response) => {
+        writeToFile('logo.svg', response)
+    })
+}
+
+init();
