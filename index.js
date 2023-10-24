@@ -34,7 +34,9 @@ function init() {
         if (response.logoText.length > 3) {
             console.log('Please enter 3 characters or less')
             return;
-        } else if (response.shape === 'circle') {
+        }
+
+        if (response.shape === 'circle') {
             const newCircle = new Circle(response.textColor, response.logoText, response.bkgrndColor);
             shapeSVG = newCircle.render();
         } else if (response.shape === 'square') {
