@@ -35,16 +35,17 @@ function init() {
             const newCircle = new Circle(response.textColor, response.logoText, response.bkgrndColor);
             shapeSVG = newCircle.render();
         } else if (response.shape === 'square') {
-            console.log('square');
-            // shapeSVG = newSquare.render();
+            const newSquare = new Square(response.textColor, response.logoText, response.bkgrndColor);
+            shapeSVG = newSquare.render();
         } else {
             console.log('triangle');
-            // shapeSVG = newCircle.render();
+            const newTriangle = new Triangle(response.textColor, response.logoText, response.bkgrndColor);
+            shapeSVG = newTriangle.render();
         };
 
-        fs.writeFile('logo.svg', shapeSVG, (err) => {
-            
-        })
+        fs.writeFile('logo.svg', shapeSVG, (err => {
+            err ? console.error(err) : console.log('Success! Generating SVG Logo...')
+        }));
     })
 }
 
