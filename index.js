@@ -7,6 +7,7 @@ const questions = [
         type: 'input',
         message: 'Please enter logo text (maximum 3 characters):',
         name: 'logoText',
+        validate: (text) => text.length <= 3 || 'Text must be less than 3 characters'
     },
     {
         type: 'input',
@@ -29,12 +30,8 @@ const questions = [
 function init() {
     inquirer.prompt(questions)
     .then((response) => {
+        
         let shapeSVG = '';
-
-        if (response.logoText.length > 3) {
-            console.log('Please enter 3 characters or less')
-            return;
-        }
 
         if (response.shape === 'circle') {
             const newCircle = new Circle(response.textColor, response.logoText, response.bkgrndColor);
@@ -51,6 +48,9 @@ function init() {
         fs.writeFile('logo.svg', shapeSVG, (err => {
             err ? console.error(err) : console.log('Success! Generating SVG Logo...')
         }));
+    })
+    .catch(err => {
+        console.log(err.message);
     })
 }
 
