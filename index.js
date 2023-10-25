@@ -1,12 +1,15 @@
+// Imports
 const inquirer = require('inquirer');
 const fs = require('fs');
 const { Circle, Square, Triangle } = require('./lib/shapes');
 
+// Inquirer questions
 const questions = [
     {
         type: 'input',
         message: 'Please enter logo text (maximum 3 characters):',
         name: 'logoText',
+        // Error handling
         validate: (text) => text.length <= 3 || 'Text must be less than 3 characters'
     },
     {
@@ -27,14 +30,19 @@ const questions = [
     },
 ]
 
+// Firing off the inquirer questions
 function init() {
     inquirer.prompt(questions)
+    // Waiting for the user response
     .then((response) => {
         
+        // initializing shapeSVG variable (will be used to store user content)
         let shapeSVG = '';
 
+        // conditional logic chain revolving around shape selection
         if (response.shape === 'circle') {
             const newCircle = new Circle(response.textColor, response.logoText, response.bkgrndColor);
+            // Calls the render method
             shapeSVG = newCircle.render();
         } else if (response.shape === 'square') {
             const newSquare = new Square(response.textColor, response.logoText, response.bkgrndColor);
@@ -45,10 +53,12 @@ function init() {
             shapeSVG = newTriangle.render();
         };
 
+        // Creates the SVG file with the user specifications + error handling
         fs.writeFile('logo.svg', shapeSVG, (err => {
             err ? console.error(err) : console.log('Success! Generating SVG Logo...')
         }));
     })
+    // Error handling
     .catch(err => {
         console.log(err.message);
     })
