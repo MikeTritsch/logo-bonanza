@@ -44,7 +44,7 @@ This application will run on both bash and terminal.
 
 4. Answer the questions as they appear
 
-5. View your read me in the file stack or code editor!
+5. View your logo in the file stack or code editor!
 
 6. Examples can be found in the 'examples' directory
 
