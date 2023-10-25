@@ -36,10 +36,10 @@ function init() {
     // Waiting for the user response
     .then((response) => {
         
-        // initializing shapeSVG variable (will be used to store user content)
+        // Initializing shapeSVG variable (will be used to store user content)
         let shapeSVG = '';
 
-        // conditional logic chain revolving around shape selection
+        // Conditional logic chain revolving around shape selection
         if (response.shape === 'circle') {
             const newCircle = new Circle(response.textColor, response.logoText, response.bkgrndColor);
             // Calls the render method
